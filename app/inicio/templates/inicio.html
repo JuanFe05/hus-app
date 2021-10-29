@@ -1,0 +1,80 @@
+{% extends "index.html" %}
+
+{% set active_page = "Inicio" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block contenido %}
+
+    <div class="section no-pad-bot" id="index-banner" style="padding-top: 0; margin-top: -1rem; line-height: normal;">
+        <div class="container">
+            <h1 class="header center blue-text">
+                Hospital Universitario de la Samaritana
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s6">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" alt="doctores"
+                        src="{{ url_for('static', filename='images/doctores_img2.jpg') }}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Quiénes Somos
+                        <i class="material-icons right">more_vert</i>
+                    </span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Quiénes Somos
+                        <i class="material-icons right">close</i>
+                    </span>
+                    <p>
+                        Somos una Empresa de Servicios de Salud de Alta y Mediana Complejidad, centro de referencia para
+                        el Departamento de Cundinamarca, cabeza de red de 37 hospitales del Departamento, con una
+                        cobertura de 116 municipios, que pasan los dos millones de habitantes, con 86 años de calidad en
+                        actividad docente, científica y asistencial, que nos dan el respaldo para ofrecerle medicina de
+                        gran calidad, con un equipo de profesionales de la salud de gran experiencia y calidez. Su
+                        experiencia de más de 85 años lo han transformado en el epicentro de atención de gran volumen de
+                        patologías relacionadas con trauma, con mayor énfasis en neurocirugía, ortopedia, cirugía
+                        general y cirugía plástica. Cirugía Bariatrica, entre otras especialidades.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s6">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" alt="Doctora"
+                        src="{{ url_for('static', filename='images/doctora_img1.jpg') }}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Misión y Visión
+                        <i class="material-icons right">more_vert</i>
+                    </span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Misión y Visión
+                        <i class="material-icons right">close</i>
+                    </span>
+                    <p>
+                        <blockquote>Misión: </blockquote>En la Empresa Social del Estado Hospital Universitario de La
+                        Samaritana, somos líderes en la prestación de servicios integrales de salud con calidad,
+                        profesionalismo y humanización,
+                        prestados por un equipo dispuesto la excelencia y con la tecnología adecuada, contribuyendo al
+                        desarrollo de la comunidad y liderando con ética la formación académica e investigativa.
+                        <br><br>
+                        <blockquote>Visión: </blockquote> En el 2021 como Hospital Universitario cabeza red de la red de
+                        Servicios de Salud de Cundinamarca, seremos reconocidos por nuestro Modelo de gestión humanizado
+                        y sustentable, con un Modelo de Educación en Investigación propio, basándonos en el desarrollo
+                        de Centros de Excelencia, que mediante el uso eficiente de los recursos y la tecnología,
+                        contribuya al mejoramiento de las condiciones de salud de la población.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

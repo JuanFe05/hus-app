@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% set active_page = "Patient" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block contenido %}
+
+<div class="input-field col s12" style="margin-top: 4rem;">
+    <h4 class="title">Bienvenido, {{ current_user.name }}</h4>
+</div>
+
+<section class="slider">
+    <ul class="slides">
+        <li>
+            <img src="{{ url_for('static', filename='images/welcome_admin1.jpg') }}"
+                alt="Médicos">
+            <div class="caption left-align">
+                <h2 class="teal-text text-accent-4" style="text-shadow: 1px 1px 2px black;">
+                    Excelencia
+                </h2>
+                <h5 class="grey-text text-lighten-5 hide-on-small-only" style="text-shadow: 1px 1px 2px black;">
+                    Es un estilo de vida, en el que buscamos con nuestras actividades diarias alcanzar el nivel máximo
+                    de calidad, Eficiencia y efectividad en nuestros compromisos.
+                </h5>
+                <a href="{{ url_for('appointment.list') }}"
+                    class="btn btn-large">Ver citas</a>
+            </div>
+        </li>
+</section>
+
+
+{% endblock %}

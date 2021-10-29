@@ -1,0 +1,68 @@
+{% extends "index.html" %}
+
+{% set active_page = "Administrador" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block contenido %}
+
+<div class="input-field col s12" style="margin-top: 4rem;">
+    <h4 class="title">Bienvenido, {{ current_user.name }}</h4>
+</div>
+
+<section class="slider">
+    <ul class="slides">
+        <li>
+            <img src="{{ url_for('static', filename='images/welcome_admin1.jpg') }}"
+                alt="Médicos">
+            <div class="caption left-align">
+                <h2 class="teal-text text-accent-4" style="text-shadow: 1px 1px 2px black;">
+                    Excelencia
+                </h2>
+                <h5 class="grey-text text-lighten-5 hide-on-small-only" style="text-shadow: 1px 1px 2px black;">
+                    Es un estilo de vida, en el que buscamos con nuestras actividades diarias alcanzar el nivel máximo
+                    de calidad, Eficiencia y efectividad en nuestros compromisos.
+                </h5>
+                <a href="{{ url_for('user.list') }}"
+                    class="btn btn-large">Ver Usuarios</a>
+            </div>
+        </li>
+
+        <li>
+            <img src="{{ url_for('static', filename='images/welcome_admin2.jpg') }}"
+                alt="Médicos">
+            <div class="caption center-align">
+                <h2 class="teal-text text-accent-4" style="text-shadow: 1px 1px 2px black;">
+                    Participación
+                </h2>
+                <h5 class="grey-text text-lighten-5 hide-on-small-only" style="text-shadow: 1px 1px 2px black;">
+                    Acceder voluntaria y conscientemente a la toma de decisiones en las cuales está involucrada la
+                    persona, con miras al Bien Común. Presencia activa de cada uno en la toma de decisiones para la
+                    construcción y el desarrollo de la entidad.
+                </h5>
+                <a href="{{ url_for('appointment.list') }}" class="btn btn-large">Ver
+                    Citas</a>
+            </div>
+        </li>
+
+        <li>
+            <img src="{{ url_for('static', filename='images/welcome_admin3.jpg') }}"
+                alt="Médicos">
+            <div class="caption right-align">
+                <h2 class="teal-text text-accent-4" style="text-shadow: 1px 1px 2px black;">
+                    Ética
+                </h2>
+                <h5 class="grey-text text-lighten-5 hide-on-small-only" style="text-shadow: 1px 1px 2px black;">
+                    Coherencia entre el pensar, el decir y
+                    el actuar, para promover los comportamientos deseables conforme a la ley moral natural y las
+                    normas legales de la sociedad.
+                </h5>
+                <a href="{{ url_for('administrador.comentarios_administrador') }}"
+                    class="btn btn-large">Ver Comentarios</a>
+            </div>
+        </li>
+    </ul>
+</section>
+
+
+{% endblock %}

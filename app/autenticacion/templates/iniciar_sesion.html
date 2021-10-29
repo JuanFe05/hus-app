@@ -1,0 +1,81 @@
+{% extends "index.html" %}
+
+{% set active_page = "iniciarSesion" %}
+
+{% block title %}IniciarSesion{% endblock %}
+
+{% block contenido %}
+
+    <div class="input-field col s12" style="margin-top: 4rem;">
+        <h4>Iniciar Sesión HUS</h4>
+    </div>
+
+    <!-- contenedor -->
+    <div class="row" style="margin-top: 2rem;">
+
+        <!-- card -->
+        <div class="col s6">
+            <div class="card" style="margin-top: 0px;">
+                <div class="card-image">
+                    <img src="{{ url_for('static', filename='images/doctor_img3.jpg') }}" alt="Doctor y paciente">
+                    <span class="card-title">Hospital Universitario de la Samaritana</span>
+                </div>
+                <div class="card-content">
+                    <p>¿Aún no tienes cuenta? 
+                        <a class="blue-text" href="{{ url_for('autenticacion.crear_cuenta') }}">
+                            Regístrate
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fomulario de ingreso -->
+        <form action="" method="POST" novalidate class="myFormLogin z-depth-2 grey lighten-4 col s6"
+            style="margin: 0 auto;">
+
+            {{ form.hidden_tag() }}
+
+            <!-- Título -->
+            <div class="col s12 valign-wrapper">
+                <h4 class="left-align">Ingreso de usuarios</h4>
+            </div>
+
+            <!-- Usuario -->
+            <div class="col s12 input-field">
+                {{ form.usuario.label }}
+                {{ form.usuario }}<br>
+                {% for error in form.usuario.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <!-- Password -->
+            <div class="col s12 input-field">
+                {{ form.password.label }}
+                {{ form.password }}<br>
+                {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <!-- Olvidó contraseña -->
+            <div class="col s12">
+                <label style="float: right;">
+                    <a class="pink-text" href="#">
+                        <b>
+                            Olvidó su contraseña?
+                        </b>
+                    </a>
+                </label>
+            </div>
+
+            <!-- Boton ingresar -->
+            <div class="col s12" style="margin-top: 22px !important;; margin-bottom: 22px !important;">
+                {{ form.ingresar(class_="btn col s12 blue") }}
+            </div>
+        </form>
+            
+    </div>
+    
+{% endblock %}

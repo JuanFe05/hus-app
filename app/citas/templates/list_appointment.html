@@ -1,0 +1,77 @@
+{% extends "index.html" %}
+
+{% set active_page = "Citas" %}
+
+{% block title %}ListaCitas{% endblock %}
+
+{% block contenido %}
+
+<div class="input-field col s12" style="margin-top: 4rem;">
+    <h4>Lista de Citas</h4>
+</div>
+
+<div class="row">
+    <div class="col s12 white z-depth-3">
+
+        <div style="margin-top: 20px;">
+            <div class="input-field col m6">
+                <input placeholder="Buscar Cita" id="search" type="text" class="validate">
+                <label for="search">Buscar Cita</label>
+            </div>
+            <div class="col m3">
+                <button class="btn blue search-button" style="margin-top: 24px; border-radius: 5px;">
+                    <i class="material-icons prefix">search</i>
+                </button>
+            </div>
+
+            <div class="col m3">
+                <a class="btn blue search-button" style="margin-top: 24px; border-radius: 5px; float: right;"
+                    href="{{ url_for('appointment.create') }}">
+                    <i class="material-icons prefix">add</i>
+                </a>
+            </div>
+        </div>
+
+        <table id="data" class="highlight centered">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Doctor</th>
+                    <th>Paciente</th>
+                    <th>Fecha de creación</th>
+                    <th>Tipo de cita</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in appointments %}
+                <tr>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.doctor.get_name() }} {{ obj.doctor.get_lastName() }}</td>
+                    <td>{{ obj.patient.get_name() }} {{ obj.patient.get_lastName() }}</td>
+                    <td>{{ obj.creationDate }}</td>
+                    <td>{{ obj.appointmentType.get_name() }}</td>
+                    <td>
+                        <a class="btn btn-floating waves-effect waves-light modal-trigger green"
+                            href="{{ url_for('appointment.edit', id=obj.id) }}">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a class="btn btn-floating waves-effect waves-light modal-trigger blue"
+                            href="{{ url_for('comment.list', id=obj.id) }}">
+                            <i class="material-icons">format_list_bulleted</i>
+                        </a>
+                        <a href="{{ url_for('appointment.delete', id=obj.id) }}"
+                            class="btn btn-floating waves-effect waves-light modal-trigger red">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

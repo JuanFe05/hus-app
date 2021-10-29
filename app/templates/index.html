@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/myStyles.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <!-- Dropdown para salir - item desplegable -->
+        <ul id="dropdownSalir" class="dropdown-content">
+            <li><a class="blue-text" href="{{ url_for('user.profile') }}">Perfil</a></li>
+            <li><a class="blue-text" href="{{ url_for('autenticacion.logout') }}">Salir</a></li>
+        </ul>
+        <!-- fin Dropdown para salir - item desplegable -->
+
+        <!-- Menú de navegación -->
+        <nav role="navigation">
+            <div class="nav-wrapper container">
+
+                <!-- user sin loguear -->
+                {% if current_user.is_anonymous %}
+                <a id="logo-container" class="brand-logo" href="{{ url_for('inicio.inicio') }}">
+                    <img src="{{ url_for('static', filename='images/logo-HUS.png') }}"
+                        alt="HUS" class="logo">
+                </a>
+
+                <ul class="right hide-on-med-and-down">
+                    <li
+                        class="{{ 'active' if active_page == 'crearCuenta' else '' }}">
+                        <a href="{{ url_for('autenticacion.crear_cuenta') }}">Crear Cuenta</a>
+                    </li>
+
+                    <li
+                        class="{{ 'active' if active_page == 'iniciarSesion' else '' }}">
+                        <a href="{{ url_for('autenticacion.iniciar_sesion') }}">Iniciar Sesión</a>
+                    </li>
+                </ul>
+                {% else %}
+
+                <!-- Administrador -->
+                {% if current_user.get_type().get_id() == 1 %}
+                <a class="brand-logo" href="{{ url_for('administrador.administrador_index') }}">
+                    <img src="{{ url_for('static', filename='images/logo-HUS.png') }}"
+                        alt="HUS" class="logo">
+                </a>
+
+                <ul class="right hide-on-med-and-down">
+                    <li
+                        class="{{ 'active' if active_page == 'Administrador' else '' }}">
+                        <a href="{{ url_for('administrador.administrador_index') }}">Inicio</a>
+                    </li>
+
+                    <li
+                        class="{{ 'active' if active_page == 'Usuarios' else '' }}">
+                        <a href="{{ url_for('user.list') }}">Usuarios</a>
+                    </li>
+
+                    <li
+                        class="{{ 'active' if active_page == 'Citas' else '' }}">
+                        <a href="{{ url_for('appointment.list') }}">Citas</a>
+                    </li>
+
+                    <li
+                        class="{{ 'active' if active_page == 'Rol' else '' }}">
+                        <a href="{{ url_for('rol.list') }}">Roles</a>
+                    </li>
+
+                    <li
+                        class="{{ 'active' if active_page == 'TipoDocumento' else '' }}">
+                        <a href="{{ url_for('documentType.list') }}">Tipo de documentos</a>
+                    </li>
+
+                    <li
+                        class="{{ 'active' if active_page == 'TipoCita' else '' }}">
+                        <a href="{{ url_for('appointmentType.list') }}">Tipo de citas</a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-trigger" data-target="dropdownSalir">
+                            {{ current_user.name }}
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+
+                <!-- Doctor -->
+                {% if current_user.get_type().get_id() == 2 %}
+                <a class="brand-logo" href="{{ url_for('administrador.doctor_index') }}">
+                    <img src="{{ url_for('static', filename='images/logo-HUS.png') }}"
+                        alt="HUS" class="logo">
+                </a>
+
+                <ul class="right hide-on-med-and-down">
+                    <li
+                        class="{{ 'active' if active_page == 'Doctor' else '' }}">
+                        <a href="{{ url_for('administrador.doctor_index') }}">Inicio</a>
+                    </li>
+
+                    <li
+                        class="{{ 'active' if active_page == 'Citas' else '' }}">
+                        <a href="{{ url_for('appointment.list') }}">Citas</a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-trigger" data-target="dropdownSalir">
+                            {{ current_user.name }}
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+                <!-- Patient -->
+                {% if current_user.get_type().get_id() == 3 %}
+                <a class="brand-logo" href="{{ url_for('administrador.patient_index') }}">
+                    <img src="{{ url_for('static', filename='images/logo-HUS.png') }}"
+                        alt="HUS" class="logo">
+                </a>
+
+                <ul class="right hide-on-med-and-down">
+                    <li
+                        class="{{ 'active' if active_page == 'Patient' else '' }}">
+                        <a href="{{ url_for('administrador.patient_index') }}">Inicio</a>
+                    </li>
+
+                    <li
+                        class="{{ 'active' if active_page == 'Citas' else '' }}">
+                        <a href="{{ url_for('appointment.list') }}">Citas</a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-trigger" data-target="dropdownSalir">
+                            {{ current_user.name }}
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+
+
+                {% endif %}
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Bloque de contenido -->
+    <div class="container">
+        {% block contenido %}{% endblock %}
+    </div>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/myJsOptions.js') }}">
+    </script>
+
+</body>
+
+</html>

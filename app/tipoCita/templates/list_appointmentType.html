@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+
+{% set active_page = "TipoCita" %}
+
+{% block title %}Lista Tipo Citas{% endblock %}
+
+{% block contenido %}
+
+<div class="input-field col s12" style="margin-top: 4rem;">
+    <h4>Lista de Tipo Citas</h4>
+</div>
+
+<div class="row">
+    <div class="col s12 white z-depth-3">
+
+        <div style="margin-top: 20px;">
+            <div class="input-field col m6">
+                <input placeholder="Buscar Cita" id="search" type="text" class="validate">
+                <label for="search">Buscar Tipo Cita</label>
+            </div>
+            <div class="col m3">
+                <button class="btn blue search-button" style="margin-top: 24px; border-radius: 5px;">
+                    <i class="material-icons prefix">search</i>
+                </button>
+            </div>
+
+            <div class="col m3">
+                <a class="btn blue search-button" style="margin-top: 24px; border-radius: 5px; float: right;"
+                    href="{{ url_for('appointmentType.create') }}">
+                    <i class="material-icons prefix">add</i>
+                </a>
+            </div>
+        </div>
+
+        <table id="data" class="highlight centered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in appointmentTypes %}
+                <tr>
+                    <td>{{ obj.name }}</td>
+                    <td>
+                        <a class="btn btn-floating waves-effect waves-light modal-trigger green"
+                            href="{{ url_for('appointmentType.edit', id=obj.id) }}">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a href="{{ url_for('appointmentType.delete', id=obj.id) }}"
+                            class="btn btn-floating waves-effect waves-light modal-trigger red">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

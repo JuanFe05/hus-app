@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+
+{% set active_page = "Rol" %}
+
+{% block title %}ListaRoles{% endblock %}
+
+{% block contenido %}
+
+<div class="input-field col s12" style="margin-top: 4rem;">
+    <h4>Lista de Roles</h4>
+</div>
+
+<div class="row">
+    <div class="col s12 white z-depth-3">
+
+        <div style="margin-top: 20px;">
+            <div class="input-field col m6">
+                <input placeholder="Buscar Rol" id="search" type="text" class="validate">
+                <label for="search">Buscar Rol</label>
+            </div>
+            <div class="col m3">
+                <button class="btn blue search-button" style="margin-top: 24px; border-radius: 5px;">
+                    <i class="material-icons prefix">search</i>
+                </button>
+            </div>
+
+            <div class="col m3">
+                <a class="btn blue search-button" style="margin-top: 24px; border-radius: 5px; float: right;"
+                    href="{{ url_for('rol.create') }}">
+                    <i class="material-icons prefix">add</i>
+                </a>
+            </div>
+        </div>
+
+        <table id="data" class="highlight centered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in rols %}
+                <tr>
+                    <td>{{ obj.name }}</td>
+                    <td>
+                        <a class="btn btn-floating waves-effect waves-light modal-trigger green"
+                            href="{{ url_for('rol.edit', id=obj.id) }}">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a href="{{ url_for('rol.delete', id=obj.id) }}"
+                            class="btn btn-floating waves-effect waves-light modal-trigger red">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

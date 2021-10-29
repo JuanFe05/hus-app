@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+html {
+    background: linear-gradient(rgba(197, 234, 249, 1), rgba(255, 255, 255, 1));
+    height: 100%;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.logo {
+    max-height: 64px !important;
+    padding: 15px 0 !important;
+}
+
+.active a{
+    color: #1e88e5;
+}
+
+ul li a {
+    color: #1e88e5;
+}
+
+nav {
+    background-color: transparent !important;
+    box-shadow: none;
+}
+
+.text {
+    font-size: 16px;
+    text-align: justify;
+    font-weight: 400;
+}
+
+/* Form style */
+.input-field input[type=date]:focus+label,
+.input-field input[type=text]:focus+label,
+.input-field input[type=email]:focus+label,
+.input-field input[type=password]:focus+label {
+    color: #e91e63;
+}
+
+.input-field input[type=date]:focus,
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus {
+    border-bottom: 2px solid #e91e63;
+    box-shadow: none;
+}
+
+/* Form Registro */
+.myForm {
+    padding: 20px 5px 5px 5px;
+}
+
+select {
+    visibility: hidden;
+    display: block;
+    position: absolute;
+}
+
+/* dropdown */
+.dropdown-content {
+    top: 100% !important;
+}
+
+/* welcome */
+h3.title {
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.slider .btn {
+    margin-top: 20px;
+    color: aliceblue;
+}
+
+.slider li::before {
+    content:'';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}

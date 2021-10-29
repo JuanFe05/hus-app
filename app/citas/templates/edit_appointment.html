@@ -1,0 +1,72 @@
+{% extends "index.html" %}
+
+{% set active_page = "editarCita" %}
+
+{% block title %}Editar Cita{% endblock %}
+
+{% block contenido %}
+
+    <div class="input-field col s12" style="margin-top: 4rem;">
+        <h3>Editar cita</h3>
+    </div>
+
+    <form action="" method="post" class="z-depth-2 grey lighten-4 myForm" style="margin-top: 2rem;" novalidate>
+
+        {{ form.hidden_tag() }}
+
+        <!-- Segunda Sección -->
+        <div class="row">
+            <!-- Select tipo documento -->
+            <div class="col s3" style="margin-top: 14.500px !important; margin-bottom: 14.500px !important;">
+                {{ form.appointmentTypeId }}
+                {% for error in form.appointmentTypeId.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <!-- Número de documento -->
+            <div class="col s3" style="margin-top: 14.500px !important; margin-bottom: 14.500px !important;">
+                {{ form.doctorId }}
+                {% for error in form.doctorId.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <!-- Fecha de nacimiento -->
+            <div class="col s3 input-field">
+                {{ form.date(class_="datepicker") }}
+                {% for error in form.date.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <!-- Select patientId -->
+            <div class="col s3" style="margin-top: 14.500px !important; margin-bottom: 14.500px !important;">
+                {{ form.patientId }}
+                {% for error in form.patientId.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <!-- Cuarta Sección -->
+        <div class="row">
+
+            <!-- Boton cancelar -->
+            <div class="col s6" style="margin-top: 22px !important;">
+                <button class="btn waves-effect waves-light col s12 red" type="reset" name="action">
+                    CANCELAR
+                </button>
+            </div>
+
+
+            <!-- Boton Guardar -->
+            <div class="col s6" style="margin-top: 22px !important;">
+                {{ form.guardar(class_="btn col s12 green") }}
+            </div>
+        </div>
+
+    </form>
+
+{% endblock %}

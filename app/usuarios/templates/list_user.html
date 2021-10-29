@@ -1,0 +1,86 @@
+{% extends "index.html" %}
+
+{% set active_page = "Usuarios" %}
+
+{% block title %}ListaUsuarios{% endblock %}
+
+{% block contenido %}
+
+<div class="input-field col s12" style="margin-top: 4rem;">
+    <h4>Lista de Usuarios</h4>
+</div>
+
+<div class="row">
+    <div class="col s12 white z-depth-3">
+
+        <div style="margin-top: 20px;">
+            <div class="input-field col m6">
+                <input placeholder="Buscar Usuario" id="search" type="text" class="validate">
+                <label for="search">Buscar Usuario</label>
+            </div>
+            <div class="col m3">
+                <button class="btn blue search-button" style="margin-top: 24px; border-radius: 5px;">
+                    <i class="material-icons prefix">search</i>
+                </button>
+            </div>
+
+            <div class="col m3">
+                <a class="btn blue search-button" style="margin-top: 24px; border-radius: 5px; float: right;" href="{{ url_for('user.create') }}">
+                    <i class="material-icons prefix"  >person_add</i>
+                </a>
+            </div>
+        </div>
+
+        <table id="data" class="highlight centered">
+            <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Tipo Documento</th>
+                    <th>Número Documento</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Sexo</th>
+                    <th>Número Teléfono</th>
+                    <th>Estado</th>
+                    <th>Role</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.documentType.get_name() }}</td>
+                    <td>{{ user.documentNumber }}</td>
+                    <td>{{ user.birthDate }}</td>
+                    <td>{{ user.gender }}</td>
+                    <td>{{ user.phoneNumber }}</td>
+                    <td>
+                        {% if user.is_active == True %}
+                            Activo
+                        {% else %}
+                            Desactivado
+                        {% endif %}
+                    </td>
+                    <td>{{ user.type.get_name() }}</td>
+                    <td>
+                        <a class="btn btn-floating waves-effect waves-light modal-trigger green" href="{{ url_for('user.edit', id=user.id) }}">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        {% if current_user.get_id() != user.id %}
+                            <a href="{{ url_for('user.delete', id=user.id) }}" class="btn btn-floating waves-effect waves-light modal-trigger red">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
