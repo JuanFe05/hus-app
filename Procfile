@@ -1,2 +1,1 @@
-web: gunicorn main: hus-app
-heroku db:push
+web: gunicorn entrypoint:app
